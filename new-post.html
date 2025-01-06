@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nieuwe Post</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Nieuwe Post</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Plaats een nieuwe post</h2>
+            <form onsubmit="createPost(event)">
+                <select id="postChannel" required>
+                    <option value="">Kies een kanaal</option>
+                </select>
+                <input type="text" id="postTitle" placeholder="Titel van je post" required>
+                <textarea id="postContent" placeholder="Schrijf je verhaal..." rows="5" required></textarea>
+                <button type="submit">Posten</button>
+            </form>
+        </section>
+    </main>
+    <footer>&copy; 2025 WieterPieters.nl</footer>
+    <script src="app.js"></script>
+    <script>
+        // Zorg dat kanalen worden geladen in de dropdown
+        const channels = JSON.parse(localStorage.getItem("channels")) || [];
+        const postChannel = document.getElementById("postChannel");
+        channels.forEach(channel => {
+            const option = document.createElement("option");
+            option.value = channel;
+            option.textContent = channel;
+            postChannel.appendChild(option);
+        });
+    </script>
+</body>
+</html>
